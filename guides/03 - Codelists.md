@@ -106,3 +106,56 @@ CL_SEX,F,Female,,en
 CL_SEX,M,Male,,en
 CL_SEX,T,Total,,en
 CL_IND,POP,Population (headline),Resident population,en
+
+
+
+---
+
+## How code lists connect to the model
+
+- **Concepts** define meaning (e.g., `REF_AREA`, `SEX`).  
+- **Code lists** enumerate valid values for those concepts.  
+- In the DSD you explicitly link a dimension or attribute to a codelist:
+  - `REF_AREA → CL_AREA`  
+  - `FREQ → CL_FREQ`  
+  - `SEX → CL_SEX`  
+  - `INDICATOR → CL_IND`
+
+This ensures:
+- Only **valid keys** are possible.  
+- Queries and filters are precise.  
+- Data can be validated automatically.
+
+---
+
+## Governance & versioning
+
+Good practice rules:  
+- **Stable codes:** once published, never change codes; update labels instead.  
+- **Short IDs:** avoid spaces, stick to `[A–Z0–9_]`.  
+- **Versioning:** maintain versions like `CL_IND (v1.0)`, note changes.  
+- **Mappings:** if you migrate from legacy codes, publish a mapping table.  
+- **Deprecation:** mark codes as deprecated but keep them until users migrate.
+
+---
+
+## Validating incoming data
+
+Simple rules to check data against codelists:  
+- Every observation key must use codes from the linked codelist.  
+- Time formats must match frequency (e.g. `M` → `YYYY-MM`).  
+- Units must be consistent within a series (or explicitly given as attributes).  
+
+Start small:  
+- First validate `REF_AREA`, `FREQ`, `TIME_PERIOD`.  
+- Then extend to `SEX`, `INDICATOR`, `UNIT_MEASURE`.
+
+---
+
+## TL;DR
+
+- **Concepts = what something means.**  
+- **Code lists = which values are valid.**  
+- Always reuse global codelists first, extend locally only if needed.  
+- Version and document codelists so others can trust and reuse your data.
+
