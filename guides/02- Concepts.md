@@ -2,81 +2,82 @@
 
 ## From numbers to concepts
 
-When you model data, you need to decide **what details** describe your number.  
-Example:  
-- **82,000,000** → just a number.  
-- **“Türkiye’s population in 2025 is 82 million”** → now it has meaning:
-  - Country = Türkiye
-  - Year = 2025
-  - Indicator = population
-  - Value = 82,000,000
+When we say:  
+**“The population of Türkiye in 2025 is 82 million”**,  
 
-Each of these details (country, year, indicator, value) is a **concept**.  
-Creating and organising these concepts is what we call **modelling**.
+we can identify the following **concepts**:  
+- Country (Türkiye)  
+- Year (2025)  
+- Indicator (Population)  
+- Value (82,000,000)  
+- Unit (Persons)  
+
+Every observation is just a combination of such concepts.  
+This activity of defining the details is called **modelling**.
 
 ---
 
-## Why do we need registries?
+## The problem: everyone invents their own labels
 
-Think of a **dictionary**: instead of everyone inventing their own words, we share a common set of definitions.  
-A **registry** in SDMX works like that dictionary: it stores and publishes standard concepts, codelists, and structures.
+Imagine three countries publish population data:  
+- Türkiye uses “Türkiye”  
+- Spain uses “TR”  
+- France uses “TUR”  
 
-There are different levels of registries:
-1. **Global registry:** contains concepts shared internationally.  
-2. **Domain registry:** for specific subject areas (labour, demography, prices).  
-3. **Local/institutional registry:** concepts created for your office or project.
+Which one is correct? If everyone defines their own labels, **data cannot be compared or integrated**.  
 
-**Rule of thumb:**  
-👉 Always check if the concept already exists in a global or domain registry **before** creating a local one.  
-This way, other people can understand your data without translation.
+---
+
+## The solution: registries
+
+To solve this, SDMX uses **registries**.  
+A registry is like a **dictionary of official concepts and codes**, so that everyone uses the same words.
+
+There are levels of registries:  
+1. **Global registry** → contains concepts valid across all domains (cross-domain concepts).  
+2. **Domain registries** → for subject areas (e.g. demography, national accounts).  
+3. **Local registries** → institution-specific concepts.
+
+**Rule of thumb:** Always check the global registry first, then go to domain or local level if needed.
 
 ---
 
 ## Cross-domain concepts (CDC)
 
-Some concepts are so common that they are reused everywhere.  
-SDMX defines them as **cross-domain concepts** (CDC) — the “shared vocabulary” of official statistics.
-
-Examples:  
-- `REF_AREA` → country/region (ISO codes)  
+These are the “shared vocabulary” of statistics — reusable concepts across all datasets:  
+- `REF_AREA` → country or region (uses ISO codes, e.g. TR, FR)  
 - `TIME_PERIOD` → time of observation (YYYY, YYYY-Qn, YYYY-MM)  
-- `FREQ` → frequency (Annual, Quarterly, Monthly)  
-- `UNIT_MEASURE` → unit of measure (e.g. persons, EUR)  
-- `OBS_VALUE` → the actual data value  
-
-If you use these, someone in another country can read your dataset immediately, even if they don’t speak your language.
+- `FREQ` → frequency (A/Q/M)  
+- `UNIT_MEASURE` → unit of measure (persons, EUR, index)  
+- `OBS_VALUE` → the actual statistical value  
 
 ---
 
-## Adding local concepts
+## Extending with local concepts
 
-Sometimes you need extra details that are not covered by CDC.  
+If the global registry doesn’t cover your need, you extend with domain or local concepts.  
 Example:  
-- “The **female** population of İstanbul in 2025 is 9 million.”  
-- Here we need a **SEX** concept, which is domain-specific (demography).  
-
-So your Concept Scheme may combine:
-- **Global concepts (CDC):** REF_AREA, TIME_PERIOD, FREQ, UNIT_MEASURE, OBS_VALUE  
-- **Local concepts:** INDICATOR, SEX  
+**“The female population of İstanbul in 2025 is 9 million.”**  
+Here, `SEX` is required → this is a **domain-specific** concept.  
 
 ---
 
-## Example Concept Scheme for Population
+## Example Concept Scheme
 
 | Concept ID    | Name             | Description                                           | Level          |
 |---------------|------------------|-------------------------------------------------------|----------------|
-| `REF_AREA`    | Reference area   | Country or region (e.g. Türkiye, İstanbul, France)    | Global (CDC)   |
-| `TIME_PERIOD` | Time period      | Year/quarter/month of the observation                 | Global (CDC)   |
-| `FREQ`        | Frequency        | Periodicity of observation (Annual/Quarterly/Monthly) | Global (CDC)   |
-| `UNIT_MEASURE`| Unit of measure  | Persons, households, index, etc.                      | Global (CDC)   |
-| `OBS_VALUE`   | Observation      | The numeric value (e.g. 82,000,000)                   | Global (CDC)   |
-| `INDICATOR`   | Indicator        | Subject measured (Population, GDP, CPI)               | Local/domain   |
-| `SEX`         | Sex              | Female, Male, Total                                   | Local/domain   |
+| `REF_AREA`    | Reference area   | Country/region (TR, FR, İstanbul)                     | Global (CDC)   |
+| `TIME_PERIOD` | Time period      | Year, quarter, month of observation                   | Global (CDC)   |
+| `FREQ`        | Frequency        | Periodicity (A/Q/M)                                   | Global (CDC)   |
+| `UNIT_MEASURE`| Unit of measure  | Unit (persons, index, EUR)                            | Global (CDC)   |
+| `OBS_VALUE`   | Observation      | The numeric value                                     | Global (CDC)   |
+| `INDICATOR`   | Indicator        | What is measured (Population, CPI, GDP)               | Domain/local   |
+| `SEX`         | Sex              | Female, Male, Total                                   | Domain/local   |
 
 ---
 
 ## Key message
 
-- **Concepts = the language of your dataset.**  
-- Use the **shared vocabulary first (CDC)**, then add local terms only if needed.  
-- This ensures your data can be read, compared, and integrated internationally.
+- Concepts are the **language of your data**.  
+- Registries ensure everyone speaks the **same language**.  
+- Always reuse global concepts first, extend only when necessary.  
