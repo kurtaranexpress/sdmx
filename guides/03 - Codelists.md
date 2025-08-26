@@ -138,26 +138,4 @@ Start small:
 
 ---
 
-## CSV examples (ready to use)
-
-`data/example_codelist.csv`
-
-```csv
-codelist_id,code,name,description,lang
-CL_FREQ,A,Annual,Yearly observations,en
-CL_FREQ,Q,Quarterly,Quarterly observations,en
-CL_FREQ,M,Monthly,Monthly observations,en
-CL_AREA,TR,Türkiye,ISO 3166 code,tr
-CL_AREA,FR,France,ISO 3166 code,en
-CL_UNIT,PERS,Persons,Count of persons,en
-CL_UNIT,MILP,Million persons,Persons / 1,000,000,en
-CL_SEX,F,Female,,en
-CL_SEX,M,Male,,en
-CL_SEX,T,Total,,en
-CL_IND,POP,Population (headline),Resident population,en
-
-
-
----
-
 
