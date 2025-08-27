@@ -80,4 +80,6 @@ Here, `SEX` is required → this is a **domain-specific** concept.
 
 - Concepts are the **language of your data**.  
 - Registries ensure everyone speaks the **same language**.  
-- Always reuse global concepts first, extend only when necessary.  
+- Always reuse global concepts first, extend only when necessary.
+
+[Next Chapter - Codelists] (https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/03%20-%20Codelists.md)
