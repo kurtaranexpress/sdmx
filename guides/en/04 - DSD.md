@@ -134,3 +134,5 @@ Try to describe this sentence in DSD terms:
 - DSD is the **formal definition** of how data is structured.  
 - It combines concepts and their codelists into **dimensions, measure, attributes**.  
 - It enforces validation, enables queries, and ensures your dataset is understood globally.
+---
+[Next Chapter: Dataflow](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/05%20-%20Dataflow.md)
