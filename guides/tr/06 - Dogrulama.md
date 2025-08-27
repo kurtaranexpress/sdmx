@@ -78,4 +78,4 @@ Doğrulama farklı seviyelerde yapılabilir:
 
 ---
 
-Sonraki Bölüm – Postman
+[Sonraki Bölüm – Postman](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/07%20-%20Postman.md)
