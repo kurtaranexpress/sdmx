@@ -72,3 +72,5 @@ Postman allows you to save and share requests as **Collections**.
 - Share collections with your team for consistent testing.  
 - Use Postman as your **first validation step** before embedding queries in applications.
 
+[Next Chapter - Modelling From Table](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/08-Modelling-from-table.md)
+
