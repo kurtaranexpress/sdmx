@@ -134,8 +134,7 @@ Start small:
 - **Code lists = which values are valid.**  
 - Always reuse global codelists first, extend locally only if needed.  
 - Version and document codelists so others can trust and reuse your data.
-
-
+  
 ---
-
+[Next Chapter - DSD](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/04%20-%20DSD.md)
 
