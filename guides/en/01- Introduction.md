@@ -54,4 +54,6 @@ New dimension needed:
 - Always start by **clarifying the exchange needs**: Which datasets will be shared? Who are the senders and receivers?  
 - Use a **simple flow diagram** to visualise which Dataflows are in scope (reporting vs dissemination).  
 - Keep in mind: **metadata is context**. Without it, a number is useless. With it, data becomes information that can be compared, reused, and trusted.  
-- Don’t jump into structures immediately — first agree on the **purpose and scope** of the exchange.  
+- Don’t jump into structures immediately — first agree on the **purpose and scope** of the exchange.
+
+[Next Chapter: Concepts](02 - Concepts.md)
