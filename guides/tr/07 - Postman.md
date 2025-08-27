@@ -70,5 +70,5 @@ Postman, sorguları **Collection** olarak kaydetmenizi ve paylaşmanızı sağla
 
 ---
 
-[Sonraki Bölüm – Tablo Üzerinden Modelleme](https://github.com/kurtaranexpress/sdmx/blob/main/guides/tr/08-Tablodan-modelleme.md)
+[Sonraki Bölüm – Tablo Üzerinden Modelleme](https://github.com/kurtaranexpress/sdmx/blob/main/guides/tr/08-%20TablodanModelleme.md)
 
