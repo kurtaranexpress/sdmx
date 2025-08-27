@@ -106,5 +106,5 @@ You can create multiple dataflows from a single schema for different purposes.
 - Explain the scope clearly, manage lifecycle openly, and give users example queries.  
 
 
-An SDMX request would look like:
+[Next Chapter - Validation](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/06%20-%20Validation.md)
 
