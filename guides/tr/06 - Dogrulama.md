@@ -59,9 +59,11 @@ Sorunlar:
 
 Doğrulama farklı seviyelerde yapılabilir:
 
-- **Yerel doğrulama araçları**: Excel kontrolleri, script’ler, veritabanı kısıtları  
-- **SDMX doğrulama servisleri**: SDMX Validator veya .Stat Suite’in doğrulama modülleri  
-- **Registry tabanlı doğrulama**: Gönderilen verilerin DSD ve registry’deki metadata ile eşleşmesini sağlar  
+- **Şema doğrulaması**: SDMX-ML mesajlarını resmi şemalara karşı kontrol edin (örn. `validate_xml()`).
+- **VTL tabanlı kurallar**: Kurumsal iş kurallarını VTL ile yazın ve bir VTL motorunda çalıştırın (ör. Trevas).
+- **.Stat Suite içe alım doğrulamaları**: İçe alım sırasında temel ve gelişmiş kontroller (frekans/zaman uyumu, zorunlu alanlar, yinelenen koordinatlar vb.).
+- **Kurumsal raporlama**: Doğrulama çıktılarının standart rapor şemalarıyla (MRR/VRF) üretimi ve paylaşımı.
+
 
 ---
 
