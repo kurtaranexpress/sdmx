@@ -14,10 +14,9 @@ This is the *deductive approach*: starting from a dataset and mapping it to conc
 
 Example table:
 
-| Country | Year | Sex | Value |
-|---------|------|-----|-------|
-| TR      | 2025 | F   | 9,000,000 |
-| TR      | 2025 | M   | 8,800,000 |
+[OECD Data Explorer - Historical Population Data](https://sdmx.oecd.org/public/rest/data/OECD.ELS.SAE,DSD_POPULATION@DF_POP_HIST,1.0/CZE+EST+DNK+FIN+FRA+DEU+GRC+HUN+ISL+IRL+ISR+ITA+JPN+KOR+LVA+LTU+LUX+MEX+NLD+NZL+NOR+POL+PRT+SVK+SVN+ESP+SWE+CHE+TUR+GBR+USA+COL+CHL+CAN+BEL+AUT+AUS..PS._T._T.?startPeriod=2022&endPeriod=2022&dimensionAtObservation=AllDimensions)
+
+<img width="1009" height="867" alt="image" src="https://github.com/user-attachments/assets/f513e24f-54e3-45c3-8683-23293ba0dd93" />
 
 At first glance it looks simple, but we need to formalize it.
 
