@@ -56,4 +56,4 @@ New dimension needed:
 - Keep in mind: **metadata is context**. Without it, a number is useless. With it, data becomes information that can be compared, reused, and trusted.  
 - Don’t jump into structures immediately — first agree on the **purpose and scope** of the exchange.
 
-[Next Chapter: Concepts](02 - Concepts.md)
+[Next Chapter: Concepts](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/02%20-%20Concepts.md)
