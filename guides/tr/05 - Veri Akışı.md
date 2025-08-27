@@ -56,7 +56,8 @@ Nüfus DSD’si (FREQ, REF_AREA, TIME_PERIOD, INDICATOR, SEX → OBS_VALUE) şu 
 
 ```http
 GET {baseUrl}/sdmx-json/data/DF_POP_MONTHLY/M.TR.POP.F?startPeriod=2024
-
+```
+---
 
 ## Özet Noktalar
 
