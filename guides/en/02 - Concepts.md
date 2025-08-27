@@ -82,4 +82,4 @@ Here, `SEX` is required → this is a **domain-specific** concept.
 - Registries ensure everyone speaks the **same language**.  
 - Always reuse global concepts first, extend only when necessary.
 
-[Next Chapter - Codelists] (https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/03%20-%20Codelists.md)
+[Next Chapter - Codelists](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/03%20-%20Codelists.md)
