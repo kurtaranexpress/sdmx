@@ -1,28 +1,29 @@
 # 03 – Code Lists (making metadata readable & computable)
 
-## Why code lists?
+## Why code lists?  
 
 We made our number meaningful with metadata (country, year, indicator…).  
-But **how do we make that metadata understandable by everyone and usable by machines**?
+But **how do we make that metadata understandable by everyone and usable by machines**?  
 
 Think of colours: saying *“mavi”* or *“kırmızı”* depends on language.  
 A **code** like `BLU` or `RED` is language-neutral.  
-**Code lists** are dictionaries that map short, stable **codes** to human-friendly labels (in many languages).
+**Code lists** are dictionaries that map short, stable **codes** to human-friendly labels (in many languages).  
 
-**Benefits**
+**Benefits**  
 - **Clarity:** one concept value → one unambiguous code (no “Türkiye/Turkey/TR” chaos)  
 - **Compute-friendly:** faster queries, joins, filters (codes as keys)  
 - **Validation:** invalid values can be rejected automatically  
 - **Multilingual:** same code, labels in many languages  
 - **Interoperability:** others can merge/use your data without translation  
 
-As with concepts, follow **global → domain → local**.
+As with concepts, follow **global → international → national/regional**.  
+And remember: code lists are usually **published and managed through registries**, so that everyone can access the same official version.  
 
 ---
 
-## Global first: reuse standard lists
+## Global first: reuse standard lists  
 
-Whenever possible, reuse **cross-domain / international** lists:
+Whenever possible, reuse **cross-domain / international** lists:  
 
 | Concept        | Typical global codelist            | Example codes                           |
 |----------------|------------------------------------|-----------------------------------------|
@@ -31,41 +32,41 @@ Whenever possible, reuse **cross-domain / international** lists:
 | `TIME_PERIOD`* | SDMX time formats (not a codelist) | `2025`, `2025-Q1`, `2025-01`            |
 | `UNIT_MEASURE` | global or domain unit lists        | `PERS` (Persons), `EUR`, `INDEX`        |
 
-\* Time uses **formats**, not enumerated codes; still standardized.
+\* Time uses **formats**, not enumerated codes; still standardized.  
 
-Reusing global lists means an analyst in Spain or France immediately understands your dataset keys.
+Reusing global lists means an analyst in Türkiye, OECD or Eurostat immediately understands your dataset keys.  
 
 ---
 
-## Then extend locally (only if needed)
+## Then extend locally (only if needed)  
 
-If your domain requires extra detail, create **domain/local** codelists:
+If your data requires extra detail, use **international or national/regional** codelists:  
 
 - `SEX` → `F` (Female), `M` (Male), `T` (Total)  
 - `INDICATOR` → `POP` (Population), `CPI`, `GDP`…  
 
-Keep them **short, stable, documented**, and versioned.
+Keep them **short, stable, documented**, and versioned.  
 
 ---
 
-## Example: population dataset – minimal set
+## Example: population dataset – minimal set  
 
-### Global / shared lists
+### Global / shared lists  
 
-**`CL_FREQ`**
+**`CL_FREQ`**  
 | Code | English label | Description            |
-|------|----------------|------------------------|
-| A    | Annual         | Yearly observations    |
-| Q    | Quarterly      | Quarter observations   |
-| M    | Monthly        | Month observations     |
+|------|---------------|------------------------|
+| A    | Annual        | Yearly observations    |
+| Q    | Quarterly     | Quarter observations   |
+| M    | Monthly       | Month observations     |
 
-**`REF_AREA`** (excerpt from ISO 3166)
+**`REF_AREA`** (excerpt from ISO 3166)  
 | Code | English label |
 |------|---------------|
 | TR   | Türkiye       |
 | FR   | France        |
 
-**`UNIT_MEASURE`**
+**`UNIT_MEASURE`**  
 | Code | English label  | Notes                  |
 |------|----------------|------------------------|
 | PERS | Persons        | Count of persons       |
@@ -73,49 +74,51 @@ Keep them **short, stable, documented**, and versioned.
 
 ---
 
-### Local / domain lists
+### International / national lists  
 
-**`CL_SEX`**
+**`CL_SEX`**  
 | Code | English label |
 |------|---------------|
 | F    | Female        |
 | M    | Male          |
 | T    | Total         |
 
-**`CL_IND`**
+**`CL_IND`**  
 | Code | English label         | Notes                   |
 |------|-----------------------|--------------------------|
 | POP  | Population (headline) | Resident population      |
 
-## How code lists connect to the model
+---
+
+## How code lists connect to the model  
 
 - **Concepts** define meaning (e.g., `REF_AREA`, `SEX`).  
 - **Code lists** enumerate valid values for those concepts.  
-- In the DSD you explicitly link a dimension or attribute to a codelist:
+- In the DSD you explicitly link a dimension or attribute to a codelist:  
   - `REF_AREA → CL_AREA`  
   - `FREQ → CL_FREQ`  
   - `SEX → CL_SEX`  
-  - `INDICATOR → CL_IND`
+  - `INDICATOR → CL_IND`  
 
-This ensures:
+This ensures:  
 - Only **valid keys** are possible.  
 - Queries and filters are precise.  
-- Data can be validated automatically.
+- Data can be validated automatically.  
 
 ---
 
-## Governance & versioning
+## Governance & versioning  
 
 Good practice rules:  
 - **Stable codes:** once published, never change codes; update labels instead.  
 - **Short IDs:** avoid spaces, stick to `[A–Z0–9_]`.  
 - **Versioning:** maintain versions like `CL_IND (v1.0)`, note changes.  
 - **Mappings:** if you migrate from legacy codes, publish a mapping table.  
-- **Deprecation:** mark codes as deprecated but keep them until users migrate.
+- **Deprecation:** mark codes as deprecated but keep them until users migrate.  
 
 ---
 
-## Validating incoming data
+## Validating incoming data  
 
 Simple rules to check data against codelists:  
 - Every observation key must use codes from the linked codelist.  
@@ -124,17 +127,17 @@ Simple rules to check data against codelists:
 
 Start small:  
 - First validate `REF_AREA`, `FREQ`, `TIME_PERIOD`.  
-- Then extend to `SEX`, `INDICATOR`, `UNIT_MEASURE`.
+- Then extend to `SEX`, `INDICATOR`, `UNIT_MEASURE`.  
 
 ---
 
-## TL;DR
+## TL;DR  
 
 - **Concepts = what something means.**  
 - **Code lists = which values are valid.**  
-- Always reuse global codelists first, extend locally only if needed.  
-- Version and document codelists so others can trust and reuse your data.
-  
----
-[Next Chapter - DSD](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/04%20-%20DSD.md)
+- Code lists live in **registries**, so everyone can use the same version.  
+- Always reuse global codelists first, extend internationally or nationally only if needed.  
+- Version and document codelists so others can trust and reuse your data.  
 
+---  
+[Next Chapter - DSD](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/04%20-%20DSD.md)
