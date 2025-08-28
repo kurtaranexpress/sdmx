@@ -1,6 +1,6 @@
 # 02 – Concept Scheme
 
-## From numbers to concepts
+## From numbers to concepts  
 
 When we say:  
 **“The population of Türkiye in 2025 is 82 million”**,  
@@ -13,73 +13,75 @@ we can identify the following **concepts**:
 - Unit (Persons)  
 
 Every observation is just a combination of such concepts.  
-This activity of defining the details is called **modelling**.
+This activity of defining the details is called **modelling**.  
 
 ---
 
-## The problem: everyone invents their own labels
+## The problem: everyone invents their own labels  
 
-Imagine three countries publish population data:  
-- Türkiye uses “Türkiye”  
-- Spain uses “TR”  
-- France uses “TUR”  
+Imagine three organisations publish population data:  
+- **Türkiye (TURKSTAT)** writes “Türkiye”  
+- **OECD** writes “TR”  
+- **Eurostat** writes “TUR”  
 
-Which one is correct? If everyone defines their own labels, **data cannot be compared or integrated**.  
+Which one is correct?  
+If everyone uses their own labels, **data cannot be compared or combined**.  
 
 ---
 
-## The solution: registries
+## The solution: registries  
 
 To solve this, SDMX uses **registries**.  
-A registry is like a **dictionary of official concepts and codes**, so that everyone uses the same words.
+A registry is like a **dictionary of official concepts and codes**, so that everyone uses the same words.  
 
-There are levels of registries:  
-1. **Global registry** → contains concepts valid across all domains (cross-domain concepts).  
-2. **Domain registries** → for subject areas (e.g. demography, national accounts).  
-3. **Local registries** → institution-specific concepts.
+There are three levels of registries:  
+1. **Global registries** → for concepts valid across all statistics.  
+2. **International registries** → for organisations such as **Eurostat SDMX Registry** or **OECD SDMX Registry**.  
+3. **National or regional registries** → for institution-specific or country-specific needs.  
 
-**Rule of thumb:** Always check the global registry first, then go to domain or local level if needed.
+**Rule of thumb:** Always reuse from the global level first, then go to international or national only if needed.  
 
 ---
 
-## Cross-domain concepts (CDC)
+## Cross-domain concepts (CDC)  
 
-These are the “shared vocabulary” of statistics — reusable concepts across all datasets:  
-- `REF_AREA` → country or region (uses ISO codes, e.g. TR, FR)  
-- `TIME_PERIOD` → time of observation (YYYY, YYYY-Qn, YYYY-MM)  
-- `FREQ` → frequency (A/Q/M)  
+These are the shared vocabulary used in many datasets:  
+- `REF_AREA` → country or region (ISO codes like TR, FR)  
+- `TIME_PERIOD` → time of observation (year, quarter, month)  
+- `FREQ` → frequency (A, Q, M)  
 - `UNIT_MEASURE` → unit of measure (persons, EUR, index)  
-- `OBS_VALUE` → the actual statistical value  
+- `OBS_VALUE` → the actual number  
 
 ---
 
-## Extending with local concepts
+## Extending with local concepts  
 
-If the global registry doesn’t cover your need, you extend with domain or local concepts.  
+If global concepts don’t cover your case, you add international, national, or regional ones.  
+
 Example:  
 **“The female population of İstanbul in 2025 is 9 million.”**  
-Here, `SEX` is required → this is a **domain-specific** concept.  
+Here, `SEX` is needed → this is an **extended concept**.  
 
 ---
 
-## Example Concept Scheme
+## Example Concept Scheme  
 
-| Concept ID    | Name             | Description                                           | Level          |
-|---------------|------------------|-------------------------------------------------------|----------------|
-| `REF_AREA`    | Reference area   | Country/region (TR, FR, İstanbul)                     | Global (CDC)   |
-| `TIME_PERIOD` | Time period      | Year, quarter, month of observation                   | Global (CDC)   |
-| `FREQ`        | Frequency        | Periodicity (A/Q/M)                                   | Global (CDC)   |
-| `UNIT_MEASURE`| Unit of measure  | Unit (persons, index, EUR)                            | Global (CDC)   |
-| `OBS_VALUE`   | Observation      | The numeric value                                     | Global (CDC)   |
-| `INDICATOR`   | Indicator        | What is measured (Population, CPI, GDP)               | Domain/local   |
-| `SEX`         | Sex              | Female, Male, Total                                   | Domain/local   |
+| Concept ID    | Name            | Description                                | Level                  |
+|---------------|-----------------|--------------------------------------------|------------------------|
+| `REF_AREA`    | Reference area  | Country/region (TR, FR, İstanbul)          | Global (CDC)           |
+| `TIME_PERIOD` | Time period     | Year, quarter, month of observation        | Global (CDC)           |
+| `FREQ`        | Frequency       | Periodicity (A/Q/M)                        | Global (CDC)           |
+| `UNIT_MEASURE`| Unit of measure | Unit (persons, index, EUR)                 | Global (CDC)           |
+| `OBS_VALUE`   | Observation     | The numeric value                          | Global (CDC)           |
+| `INDICATOR`   | Indicator       | What is measured (Population, GDP, CPI)    | International/National |
+| `SEX`         | Sex             | Female, Male, Total                        | International/National |
 
 ---
 
-## Key message
+## Key message  
 
-- Concepts are the **language of your data**.  
-- Registries ensure everyone speaks the **same language**.  
-- Always reuse global concepts first, extend only when necessary.
+- Concepts are the **language of data**.  
+- Registries make sure everyone uses the **same words**.  
+- Always reuse global concepts first, then international, and only extend nationally or locally when necessary.  
 
 [Next Chapter - Codelists](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/03%20-%20Codelists.md)
