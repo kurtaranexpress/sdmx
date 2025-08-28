@@ -99,7 +99,7 @@ Population_errors := check_datapoint(
     on := SEX,
     measure := obs_value
 );
-vtl```
+```
 If the rule fails, Population_errors will return the records that violate it.
 
 ---
