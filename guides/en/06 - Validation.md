@@ -98,7 +98,7 @@ Population_errors := check_datapoint(
     ruleset := sex_hr,
     on := SEX,
     measure := obs_value
-);
+);```
 If the rule fails, Population_errors will return the records that violate it.
 
 ---
