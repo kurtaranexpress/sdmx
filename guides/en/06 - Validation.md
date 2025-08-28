@@ -83,15 +83,23 @@ Problems:
 
 ## Tiny example in VTL
 
-Check that total = male + female:
+Check that the total equals male + female:
 
-Population_Total = Population[SEX="T"]
-Population_Male = Population[SEX="M"]
-Population_Female= Population[SEX="F"]
+```vtl
+-- Define a hierarchical rule for the SEX dimension
+define hierarchical ruleset sex_hr (valuedomain rule SEX) is
+    T = M + F
+end hierarchical ruleset;
 
-Population_Total = Population_Male + Population_Female
-
-If this rule fails, the validator flags an error.
+-- Apply the rule to the dataset
+-- Assume: Population(REF_AREA, TIME_PERIOD, SEX, obs_value)
+Population_errors := check_datapoint(
+    ds := Population,
+    ruleset := sex_hr,
+    on := SEX,
+    measure := obs_value
+);
+If the rule fails, Population_errors will return the records that violate it.
 
 ---
 
