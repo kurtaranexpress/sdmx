@@ -4,10 +4,10 @@
 
 A **Data Structure Definition (DSD)** is the **blueprint of your dataset**.  
 It tells us:
-- Which **concepts** are used as dimensions  
+- Which **concepts** are used as **dimensions**  
 - Which concept is the **measure** (the actual value)  
 - Which concepts are **attributes** (extra information)  
-- Which **codelists** each dimension/attribute uses
+- Which **codelists** each dimension/attribute uses  
 
 In short:  
 **Concepts = language → Codelists = vocabulary → DSD = grammar**
@@ -29,6 +29,19 @@ In short:
 - **Attributes**  
   Provide additional info about the observation or series.  
   Example: `UNIT_MEASURE` = “Persons”.
+
+---
+
+## When is a concept a dimension or an attribute?
+
+- Use a **dimension** when the value *changes the identity of the observation*.  
+  - Example: `SEX` → Male vs Female are **different series**.  
+- Use an **attribute** when the value is *extra information*, not part of the identity.  
+  - Example: `UNIT_MEASURE` → “Persons” or “EUR” are just describing the value.  
+
+👉 Rule of thumb:  
+If removing it would make two observations look the same but mean different things → it must be a **dimension**.  
+If it only explains the number further → it’s an **attribute**.
 
 ---
 
@@ -55,15 +68,6 @@ In short:
 
 ---
 
-## How DSDs enable validation
-
-Because each dimension/attribute is linked to a codelist:
-- Only valid codes can be used in keys.  
-- Systems can check consistency (e.g. `M` frequency requires `YYYY-MM` format).  
-- Attributes like `UNIT_MEASURE` ensure clarity across datasets.
-
----
-
 ## Example series key
 
 Observation: “Female population of İstanbul in 2025 = 9 million persons”  
@@ -76,15 +80,6 @@ Measure:
 
 Attribute:  
 `UNIT_MEASURE = PERS`
-
----
-
-## Notes on best practice
-
-- **Order of dimensions matters** → defined in the DSD, used in keys.  
-- **DimensionAtObservation** parameter controls how dimensions are exposed in data queries (flat vs nested).  
-- **Keep DSDs stable** → changing dimension order or codelist links breaks comparability.  
-- **Document your DSD** → publish a short note in plain language.
 
 ---
 
@@ -104,20 +99,7 @@ The DSD is just the **formal definition of this table**.
 
 ---
 
-## 💡 FAQ for beginners
-
-**Q: Why do we separate “measure” from “dimensions”?**  
-A: Because the measure is the number you want to analyse. The dimensions are the “labels” that explain it.  
-
-**Q: Can I have more than one measure?**  
-A: Usually not in SDMX. Better to use one measure (`OBS_VALUE`) and if you need different variables (e.g. population & GDP), model them as indicators.  
-
-**Q: What if I forget an attribute like Unit?**  
-A: Then users may misinterpret your value (e.g. “9” → 9 persons? 9 thousand? 9 million?). Always keep units explicit.
-
----
-
-## 🧩 Tiny practical exercise
+## 💡 Tiny practical exercise
 
 Try to describe this sentence in DSD terms:
 
@@ -132,7 +114,10 @@ Try to describe this sentence in DSD terms:
 ## TL;DR
 
 - DSD is the **formal definition** of how data is structured.  
-- It combines concepts and their codelists into **dimensions, measure, attributes**.  
-- It enforces validation, enables queries, and ensures your dataset is understood globally.
----
+- **Dimensions** = define the identity of observations.  
+- **Measure** = the actual value.  
+- **Attributes** = extra information about the value.  
+- Deciding if a concept is dimension or attribute is the most important modelling step.  
+
+---  
 [Next Chapter: Dataflow](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/05%20-%20Dataflow.md)
