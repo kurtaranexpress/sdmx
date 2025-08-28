@@ -1,68 +1,89 @@
 # 05 – Dataflow (Published Dataset)
 
-## What is a Dataflow?
+## From DSD to Dataflow  
 
-A DSD gives us the **plan** or the **schema**, but it’s not enough on its own.  
-To tell users *“this is the dataset you can actually query”*, we define a **Dataflow**.
+The **DSD** defines the **data structure** – it tells us how concepts, dimensions, and attributes fit together.  
+But the DSD alone is just a *definition*.  
 
-A Dataflow specifies:
-- Which DSD it is based on  
-- What the dataset is meant for  
-- Which time periods and areas it covers  
-- How often it is updated  
-- Description, contact, and license information  
+A **Dataflow** is a **presentation of actual data** built on top of a DSD.  
+It says: *“Here is the dataset you can query, based on this structure.”*  
 
-In short:
-- **DSD → how the data is structured**  
-- **Dataflow → which data is published**
+In short:  
+- **DSD = structure** (blueprint of the dataset)  
+- **Dataflow = presentation** (a published dataset using that structure)  
 
 ---
 
-## Why do we need Dataflows?
+## Why Dataflows matter  
 
-- You can publish **multiple products from the same DSD** (e.g. “Annual Population” vs “Monthly Population”).  
-- It makes the scope explicit (e.g. “data available from 2015 onwards, city level included”).  
-- It lets you manage the **publication lifecycle** without breaking the DSD (close an old flow, open a new one).  
-
----
-
-## Minimal elements of a Dataflow
-
-- **ID:** `DF_POP` (short and stable)  
-- **Name:** `Population – Monthly`  
-- **Description:** `Resident population, monthly`  
-- **DSD reference:** `DSD_POP`  
-- **Coverage:** `2015–present`, `countries + selected cities`  
-- **Update frequency:** `Monthly, T+30`  
-- **Contact:** `population-team@example.org`  
-- **License:** `CC-BY 4.0`  
+- A single DSD can give rise to **many different Dataflows** (e.g. “Annual Population” vs “Monthly Population”).  
+- Dataflows make the scope explicit: users know which dataset is being offered.  
+- They let you manage publication lifecycle without altering the underlying DSD.  
 
 ---
 
-## Example
+## The role of Cubes and Mapping  
 
-Our population DSD (FREQ, REF_AREA, TIME_PERIOD, INDICATOR, SEX → OBS_VALUE) can be published as:
+To move from **DSD (definition)** to **Dataflow (publication)** we need an extra step:  
+
+- **Cube**  
+  In practice, a cube is the **physical dataset in the database**, organised by the DSD’s dimensions (like a multi-dimensional fact table).  
+  *(Note: “cube” is not a formal SDMX standard term, but a common way of storing statistical data.)*  
+
+- **Mapping**  
+  Mapping connects the **database layer (cubes, tables, fields)** to the **DSD concepts and codelists**.  
+  Without mapping, the system doesn’t know how raw database fields correspond to DSD concepts.  
+  *(Note: “mapping” is an implementation layer concept, not part of the SDMX XML standard itself.)*  
+
+👉 A Dataflow exists only when there is both:  
+- A **DSD** (definition), and  
+- A **Mapping to a cube** (link to actual stored data).  
+
+---
+
+## Minimal elements of a Dataflow  
+
+Every Dataflow must contain:  
+- **ID** (short and stable, e.g. `DF_POP`)  
+- **Name** (multi-lingual, e.g. `Population – Monthly`)  
+- **Description** (what the dataset is about)  
+- **Reference to a DSD**  
+
+In addition, organisations often provide **extra metadata** as annotations, such as:  
+- Coverage period (e.g. `2015–present`)  
+- Geographic scope (e.g. `countries + selected cities`)  
+- Update frequency (e.g. `Monthly, T+30`)  
+- Contact or license information  
+
+---
+
+## Example  
+
+Our population DSD (`FREQ`, `REF_AREA`, `TIME_PERIOD`, `INDICATOR`, `SEX` → `OBS_VALUE`) can be connected to a **population cube** in the database.  
+A mapping aligns database fields (`country_code`, `year`, `sex`) with DSD concepts (`REF_AREA`, `TIME_PERIOD`, `SEX`).  
+
+Once mapped, it can be published as:  
 
 **Dataflow:** `DF_POP_MONTHLY`  
 - **DSD:** `DSD_POP`  
 - **Description:** Monthly population data  
-- **Scope:** `FREQ = M`, `INDICATOR = POP`  
-- **Time:** `2015–today`  
-- **Contact:** `population-team@example.org`  
+- **Scope (annotation):** `FREQ = M`, `INDICATOR = POP`, `2015–today`  
+- **Contact (annotation):** `population-team@example.org`  
 
 ---
 
-## How does it look for the user?
+## How does it look for the user?  
+
 GET {baseUrl}/sdmx-json/data/DF_POP_MONTHLY/M.TR.POP.F?startPeriod=2024
 
 
 - `DF_POP_MONTHLY` = Dataflow ID  
 - Underlying structure = `DSD_POP`  
-- Key order = the sequence of dimensions in the DSD  
+- The mapping ensures that “TR” and “POP” are correctly linked to database fields  
 
 ---
 
-## Lifecycle management
+## Lifecycle management  
 
 - Don’t break the DSD when something changes → open a **new Dataflow** if needed.  
 - Mark old flows as `deprecated` and clearly link to the new ones.  
@@ -70,41 +91,21 @@ GET {baseUrl}/sdmx-json/data/DF_POP_MONTHLY/M.TR.POP.F?startPeriod=2024
 
 ---
 
-## Documentation checklist
+## Simple analogy  
 
-- [ ] Plain-language summary (what’s included / not included)  
-- [ ] Dimension order and codelist references (link or small table)  
-- [ ] Time coverage and update frequency  
-- [ ] Known issues (breaks, rebases, etc.)  
-- [ ] Contact & license  
-- [ ] Copy-paste example request  
+- **DSD = table schema** (the plan)  
+- **Cube = physical data table** (the storage)  
+- **Mapping = how schema fields link to database fields**  
+- **Dataflow = the published dataset** (what users see and query)  
 
 ---
 
-## Simple analogy
+## In short  
 
-- **DSD = table schema**  
-- **Dataflow = published view/product based on that schema**  
-
-You can create multiple dataflows from a single schema for different purposes.
-
----
-
-## 🔑 Practical tips
-
-- Don’t hardcode years or scopes into IDs (`DF_POP_2025` is bad) → keep IDs stable, put details in description.  
-- If users struggle to filter, **split into smaller flows** that are easier to understand.  
-- Don’t create duplicate DSDs for the same concept → use one DSD, multiple Dataflows.  
-- Always provide an **example query** on the Dataflow page — this alone reduces many support emails.  
-
----
-
-## In short
-
-- **DSD = structure**, **Dataflow = publication**.  
-- A single DSD can support multiple Dataflows.  
-- Explain the scope clearly, manage lifecycle openly, and give users example queries.  
-
+- **DSD defines the structure, Dataflow is the published view of that structure.**  
+- **Cubes** hold the actual data; **mapping** links cubes to DSD concepts.  
+- A Dataflow always has ID, name, description, and a DSD reference.  
+- Extra details (coverage, frequency, contact) are usually provided via **annotations**.  
+- A single DSD can support many Dataflows, each with its own scope and lifecycle.  
 
 [Next Chapter - Validation](https://github.com/kurtaranexpress/sdmx/blob/main/guides/en/06%20-%20Validation.md)
-
